@@ -23,4 +23,16 @@ public class CategoryController : Controller
         var result = _categoryService.AddAsync(categoryCreateModel);
         return View();
     }
+
+    public async Task<IActionResult> CategoryUpdate(CategoryUpdateModel categoryUpdateModel)
+    {
+        var result = _categoryService.UpdateAsync(categoryUpdateModel);
+        return View();
+    }
+
+    public async Task<IActionResult> CategoryDetails(int id)
+    {
+        var result = await _categoryService.GetCategoriesAsyncId(id);
+        return View(result);
+    }
 }

@@ -12,9 +12,9 @@ public class WebAPPProjectDbContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
+
             optionsBuilder.UseSqlServer(@"Server=.;Database=WebAPP;Trusted_Connection=true");
+
         }
     }
-
-    public DbSet<PersonalWebAPPMvc.DTO_s.Categories.CategoryCreateModel> CategoryCreateModel { get; set; }
 }

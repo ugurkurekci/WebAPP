@@ -5,13 +5,13 @@ namespace PersonalWebAPPMvc.Business.Category;
 
 public interface ICategoryService
 {
-    Task AddAsync(CategoryCreateModel categoryCreateModel);
+    public Task AddAsync(CategoryCreateModel categoryCreateModel);
 
-    Task UpdateAsync(CategoryUpdateModel categoryUpdateModel);
+    public Task UpdateAsync(CategoryUpdateModel categoryUpdateModel);
 
-    Task<CategoryDetailsModel> GetCategoriesAsyncId(int id);
+    public Task<CategoryDetailsModel> GetCategoriesAsyncId(int id);
 
-    Task<List<Categories>> GetAllCategoriesAsync();
+    public Task<List<Categories>> GetAllCategoriesAsync();
 
 
 }

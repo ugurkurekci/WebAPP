@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using PersonalWebAPPMvc.Models.Concrete;
 using PersonalWebAPPMvc.DTO_s.Categories;
+using PersonalWebAPPMvc.Models.Concrete;
 using PersonalWebAPPMvc.Repository.Category;
 
 namespace PersonalWebAPPMvc.Business.Category;
@@ -19,7 +19,7 @@ public class CategoryService : ICategoryService
     public Task AddAsync(CategoryCreateModel categoryCreateModel)
     {
         Categories category = _mapper.Map<Categories>(categoryCreateModel);
-        var result =  _categoryRepository.AddAsync(category);
+        var result = _categoryRepository.AddAsync(category);
         return Task.FromResult(result);
     }
 
@@ -31,14 +31,15 @@ public class CategoryService : ICategoryService
         await Task.FromResult(exist.Id);
     }
 
+    public async Task<CategoryDetailsModel> GetCategoriesAsyncId(int id)
+    {
+        Categories exist = await _categoryRepository.GetByIdAsync(id);
+        return _mapper.Map<CategoryDetailsModel>(exist);
+
+    }
+
     public async Task<List<Categories>> GetAllCategoriesAsync()
     {
         return await _categoryRepository.GetAll();
-    }
-
-    public async Task<CategoryDetailsModel> GetCategoriesAsyncId(int id)
-    {
-        Categories category = await _categoryRepository.GetByIdAsync(id);
-        return _mapper.Map<CategoryDetailsModel>(category);
     }
 }

@@ -10,5 +10,5 @@ public interface ICategoryRepository
 
     public Task UpdateAsync(Categories categories);
 
-    Task<Categories> GetByIdAsync(int id);
+    public Task<Categories> GetByIdAsync(int id);
 }
