@@ -1,0 +1,96 @@
+﻿@model IEnumerable<PersonalWebAPPMvc.Models.Concrete.Categories>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="card-body">
+    <p class="card-title"></p>
+    <div id="dataTables-example_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+        <div class="col-sm-12">
+
+
+            @using (Html.BeginForm("CategoryAdd", "Category", FormMethod.Post))
+            {
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Yeni</button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Kategori İşlemi</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-start">
+                                <p>Kategori ekleme işlemini yapabilirsiniz.</p>
+                                <form accept-charset="utf-8">
+                                    <div class="mb-3">
+                                        <label>Kategori Adı</label>
+                                        <input type="text" name="categoryName" max=20 class="form-control" />
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <button type="submit" class="btn btn-primary">Ekle</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+
+
+
+            <table class="table table-hover dataTable no-footer dtr-inline" id="dataTables-example" width="100%" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
+                <thead>
+
+                    <tr role="row" class="dataTables_primary">
+                        <th>
+                            @Html.DisplayName("Kategori İsim")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Oluşturulma Tarihi")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Güncellenme Tarihi")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Son Görüntülenme Tarihi")
+                        </th>
+                        <th></th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CategoryName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreateDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UpdateDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastCheckDate)
+                            </td>
+                            <td>
+                                <a href="@Url.Action("CategoryUpdate","Category")/@item.Id" class="btn btn-warning btn-icon-split"> <span class="icon text-black-50"> <i class="fas fa-eye"></i> </span><span class="text">Update</span></a>
+                                <a href="@Url.Action("CategoryDetails","Category")/@item.Id" class="btn btn-Info btn-icon-split"> <span class="icon text-black-50"> <i class="fas fa-eye"></i> </span><span class="text">Details</span></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

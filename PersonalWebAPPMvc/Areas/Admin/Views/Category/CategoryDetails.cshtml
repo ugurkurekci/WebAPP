@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "CategoryDetails";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
 <h1>CategoryDetails</h1>
@@ -38,6 +38,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="CategoryUpdate" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a href="@Url.Action("CategoryUpdate","Category")/@Model.Id" class="btn btn-Info btn-icon-split"> <span class="icon text-black-50"> <i class="fas fa-eye"></i> </span><span class="text">Update</span></a>
+    <a href="@Url.Action("Index","Category")" class="btn btn-Info btn-icon-split"> <span class="icon text-black-50"> <i class="fas fa-eye"></i> </span><span class="text">Liste</span></a>
 </div>

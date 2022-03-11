@@ -2,7 +2,7 @@
 using PersonalWebAPPMvc.Business.Category;
 using PersonalWebAPPMvc.DTO_s.Categories;
 
-namespace PersonalWebAPPMvc.Controllers;
+namespace PersonalWebAPPMvc.Areas.Admin.Controllers;
 public class CategoryController : Controller
 {
     ICategoryService _categoryService;
@@ -21,7 +21,7 @@ public class CategoryController : Controller
     public async Task<IActionResult> CategoryAdd(CategoryCreateModel categoryCreateModel)
     {
         var result = _categoryService.AddAsync(categoryCreateModel);
-        return View();
+        return RedirectToAction("Index", "Category");
     }
 
     public async Task<IActionResult> CategoryUpdate(CategoryUpdateModel categoryUpdateModel)
@@ -29,6 +29,8 @@ public class CategoryController : Controller
         var result = _categoryService.UpdateAsync(categoryUpdateModel);
         return View();
     }
+
+
 
     public async Task<IActionResult> CategoryDetails(int id)
     {

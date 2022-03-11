@@ -17,4 +17,6 @@ public class WebAPPProjectDbContext : DbContext
 
         }
     }
+
+    public DbSet<PersonalWebAPPMvc.DTO_s.Categories.CategoryUpdateModel> CategoryUpdateModel { get; set; }
 }

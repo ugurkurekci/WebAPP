@@ -1,4 +1,4 @@
-using PersonalWebAPPMvc.Business;
+﻿using PersonalWebAPPMvc.Business;
 using PersonalWebAPPMvc.Models.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,8 +25,21 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints => //Core 3.1 ile beraber artik yönlendiremeler bu sekilde yapiliyor..
+{
+    endpoints.MapAreaControllerRoute(
+
+        name: "Admin",
+        areaName: "Admin",
+        pattern: "Admin/{controller=Home}/{action=Index}/{id?}" //Admin areas sayfa yönlendirmesi.
+        );
+
+    endpoints.MapDefaultControllerRoute(); //Home Controller Index sayfasi
+
+
+});
 
 app.Run();
